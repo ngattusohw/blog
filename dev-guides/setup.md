@@ -130,13 +130,22 @@ After installation, launch SuperWhisper and follow the setup instructions:
 
 ## 6. Install Cursor
 
-Cursor is an IDE built on VSCode that integrates AI capabilities to help you code faster.
+Cursor is an IDE built on VSCode that integrates AI capabilities to help you code faster. I recommend this now over VSCode, since it is a fork in the end anyway.
 
 Install it using Homebrew:
 
 ```bash
 brew install --cask cursor
 ```
+
+If you want to install VSCode instead, use this command:
+
+```bash
+# Visual Studio Code (alternative to Cursor)
+brew install --cask visual-studio-code
+```
+
+
 
 After installation, launch Cursor and:
 
@@ -147,16 +156,16 @@ After installation, launch Cursor and:
 
 ## Additional Developer Tools Worth Installing
 
-Now that you have the essentials, consider adding these other tools:
+Now that you have the essentials, you should install these other tools:
 
 ### Command Line Tools
 
 ```bash
-# Git (version control)
-brew install git
 
 # NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Before you can use nvm, you need to restart your terminal. This is the general rule for most tools that are not installed via a package manager like brew
 
 # Node.js using NVM
 nvm install --lts
@@ -167,11 +176,9 @@ npm install -g yarn
 # Python
 brew install python
 
-# Visual Studio Code (alternative to Cursor)
-brew install --cask visual-studio-code
 ```
 
-After installing NVM, add these lines to your ~/.zshrc file if they aren't added automatically:
+After installing NVM, add these lines to your ~/.zshrc file if they aren't added automatically... it usually is added though:
 
 ```bash
 export NVM_DIR="$HOME/.nvm"
@@ -323,6 +330,16 @@ git remote set-url origin git@github.com:username/repo.git
 
 Now you can push and pull without entering your username and password each time!
 
+
+### Set Up Global Git Configuration
+
+There is one final git related step we should do -- it is configuring your git config. Without doing this step, on your git commits a random unknown user will be getting credit for your commits!
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+```
+
 ## Setting Up Your Development Workspace
 
 ### Create a Development Folder and Add It to Finder Favorites
@@ -330,58 +347,28 @@ Now you can push and pull without entering your username and password each time!
 First, let's create a dedicated folder for all your development projects:
 
 ```bash
-mkdir -p ~/Developer
+mkdir -p ~/dev
 ```
 
 Now, let's add this folder to your Finder favorites for quick access:
 
 1. Open Finder
-2. Press Cmd+Shift+G and type `~/Developer`, then click "Go"
-3. With the Developer folder open, press Cmd+Shift+T (or drag the folder to the sidebar)
+2. Press Cmd+Shift+G and type `~/dev`, then click "Go"
+3. With the dev folder open, press Cmd+Shift+T (or drag the folder to the sidebar)
 
-This will add your Developer folder to the Favorites section in Finder's sidebar, making it easily accessible whenever you need it.
+This will add your dev folder to the Favorites section in Finder's sidebar, making it easily accessible whenever you need it. Early on when developing on a mac, quickly finding your folder via Finder is more difficult than you would expect! This solve that issue pretty well.
 
 You can also do this from Terminal if you prefer:
 
 ```bash
 # Make sure the folder exists
-mkdir -p ~/Developer
+mkdir -p ~/dev
 
 # Add to Finder favorites (requires additional setup)
-mysides add Developer file:///Users/$USER/Developer
+mysides add dev file:///Users/$USER/Developer
 ```
 
 Note: The `mysides` command requires installation: `brew install mysides`
-
-## Final Touches
-
-### Create a GitHub SSH Key
-
-Generate an SSH key for GitHub:
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-```
-
-Add it to your SSH agent:
-
-```bash
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-```
-
-Copy the key and add it to your GitHub account:
-
-```bash
-pbcopy < ~/.ssh/id_ed25519.pub
-```
-
-### Set Up Global Git Configuration
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your_email@example.com"
-```
 
 ## Conclusion
 
